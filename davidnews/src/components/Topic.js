@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import * as api from "../api";
 import { Link } from "react-router-dom";
 
-class Articles extends React.Component {
+class Topic extends Component {
   state = {
     articles: []
   };
@@ -12,7 +12,6 @@ class Articles extends React.Component {
   };
 
   componentDidUpdate = async prevProps => {
-    console.log(this.props, "all articles props");
     if (this.props !== prevProps) {
       this.fetchArticles();
     }
@@ -20,8 +19,10 @@ class Articles extends React.Component {
 
   fetchArticles = async () => {
     let articles;
+    let topic = this.props.match.params.topic_slug;
+    console.log(topic);
 
-    articles = await api.fetchArticles();
+    articles = await api.fetchArticlesByTopic(topic);
 
     this.setState({ articles });
   };
@@ -45,8 +46,6 @@ class Articles extends React.Component {
       </div>
     );
   }
-
-  static propTypes = {};
 }
 
-export default Articles;
+export default Topic;

@@ -1,0 +1,8 @@
+ :change post comment rendering to just puuting the response comment on state
+
+ updating vote count by mapping over current state finding which comment id matches the returned comment then replacing that comment with the new one 
+ and then setting state with that new array
+
+ look at redirection in notes and aim for implementation of it
+
+ make comments load based off timestamp

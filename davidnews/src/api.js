@@ -12,6 +12,14 @@ export const fetchOneArticle = id => {
     .then(res => res.data.article[0]);
 };
 
+export const fetchArticlesByTopic = topic => {
+  return axios
+    .get(
+      `https://davids-northcoder-news.herokuapp.com/api/topics/${topic}/articles`
+    )
+    .then(res => res.data.articles);
+};
+
 export const fetchComments = id => {
   return axios
     .get(
@@ -20,8 +28,27 @@ export const fetchComments = id => {
     .then(res => res.data.comments);
 };
 
-export const commentPollingStation = (ballot, id) => {
+export const voteOnComment = (ballot, id) => {
   return axios.put(
-    `https://davids-northcoder-news.herokuapp.com/api/comments/${id}?${ballot}`
+    `https://davids-northcoder-news.herokuapp.com/api/comments/${id}?vote=${ballot}`
   );
+};
+
+export const voteOnArticle = (ballot, id) => {
+  return axios
+    .put(
+      `https://davids-northcoder-news.herokuapp.com/api/articles/${id}?vote=${ballot}`
+    )
+    .then(res => {
+      return res.data.article;
+    });
+};
+
+export const postComment = (id, commentToPost) => {
+  return axios
+    .post(
+      `https://davids-northcoder-news.herokuapp.com/api/articles/${id}/comments`,
+      commentToPost
+    )
+    .then(res => res.data.Comment);
 };

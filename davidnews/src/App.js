@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Articles from "./components/Articles.js";
 import Article from "./components/Article.js";
+import Topic from "./components/Topic.js";
 
 import "./App.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -17,6 +18,8 @@ class App extends Component {
 
           <Route exact path="/articles" component={Articles} />
           <Route exact path="/articles/:article_id" component={Article} />
+          <Route exact path="/topics/:topic_slug/articles" component={Topic} />
+          {/*  */}
         </div>
       </Router>
     );
