@@ -8,12 +8,14 @@ class Topic extends Component {
   };
 
   componentDidMount = async () => {
-    this.fetchArticles();
+    let topic = this.props.match.params.topic_slug;
+    this.fetchArticles(topic);
   };
 
   componentDidUpdate = async prevProps => {
+    let topic = this.props.match.params.topic_slug;
     if (this.props !== prevProps) {
-      this.fetchArticles();
+      this.fetchArticles(topic);
     }
   };
 
