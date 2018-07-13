@@ -5,7 +5,6 @@ import PostArticle from "./PostArticle.js";
 
 class Articles extends React.Component {
   state = {
-    testLad: "I exist",
     articles: []
   };
 
@@ -56,18 +55,33 @@ class Articles extends React.Component {
             height: 150 + article.votes * 12,
             width: 150 + article.votes * 12
           };
-          //article title elements
-          return (
-            <div className="articles" style={size} key={article.title}>
-              <Link
-                className="title-text"
-                to={`/articles/${article._id}`}
-                key={article._id}
-              >
-                <p>{article.title}</p>
-              </Link>
-            </div>
-          );
+          //article title element is only rendered if the votes are positive
+
+          if (article.votes < 0) {
+            return (
+              <div className="articles" style={size} key={article.title}>
+                <Link
+                  className="title-text"
+                  to={`/articles/${article._id}`}
+                  key={article._id}
+                >
+                  <p id="question-mark">?</p>
+                </Link>
+              </div>
+            );
+          } else
+            return (
+              //I need to make the whole element a link but i'd have to rejig the css and its's a short life
+              <div className="articles" style={size} key={article.title}>
+                <Link
+                  className="title-text"
+                  to={`/articles/${article._id}`}
+                  key={article._id}
+                >
+                  <p>{article.title}</p>
+                </Link>
+              </div>
+            );
         })}
       </div>
     );
