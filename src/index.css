@@ -8,3 +8,7 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  background: url("./images/desksofts.jpg") no-repeat center center fixed;
+}
