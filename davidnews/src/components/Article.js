@@ -3,8 +3,6 @@ import * as api from "../api";
 import Comments from "../components/Comments";
 import { Redirect } from "react-router-dom";
 
-//do seperate api call in this guy
-
 class Article extends Component {
   state = { article: {} };
 
