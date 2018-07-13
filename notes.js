@@ -145,3 +145,33 @@ class Article extends React.Component {
 }
 
 export default Article;
+
+
+
+
+
+
+
+//EVENT LISTENERS
+/*
+
+REACT API SYNTHETIC EVENTS
+MOUSE EVENTS, UI EVENTS ECT...
+
+
+*/ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,9 +1,11 @@
 import React from "react";
 import * as api from "../api";
 import { Link } from "react-router-dom";
+import PostArticle from "./PostArticle.js";
 
 class Articles extends React.Component {
   state = {
+    testLad: "I exist",
     articles: []
   };
 
@@ -12,32 +14,57 @@ class Articles extends React.Component {
   };
 
   componentDidUpdate = async prevProps => {
-    console.log(this.props, "all articles props");
     if (this.props !== prevProps) {
       this.fetchArticles();
     }
   };
 
   fetchArticles = async () => {
-    let articles;
-
-    articles = await api.fetchArticles();
+    const topic = this.props.match.params.topic_slug;
+    const articles = await api.fetchArticles(topic);
 
     this.setState({ articles });
+  };
+
+  handlePostArticleClick = articleToPost => {
+    const topic = this.props.match.params.topic_slug;
+    console.log(topic, "the topic");
+
+    api.postArticle(topic, articleToPost).then(article => {
+      console.log(article, "api result");
+      const oldArticles = this.state.articles.map(article => {
+        return { ...article };
+      });
+      this.setState({
+        articles: [article, ...oldArticles]
+      });
+    });
   };
 
   render() {
     const { articles } = this.state;
 
     return (
-      <div>
+      <div className="centering-box">
+        {/* conditonal post article box */}
+        {this.props.match.params.topic_slug && (
+          <PostArticle handleClick={this.handlePostArticleClick} />
+        )}
         {articles.map(article => {
+          //evaluates element size by vote count
+          let size = {
+            height: 150 + article.votes * 12,
+            width: 150 + article.votes * 12
+          };
+          //article title elements
           return (
-            <div>
-              <Link to={`/articles/${article._id}`} key={article._id}>
-                <p>This article is broadly related to {article.belongs_to}</p>
+            <div className="articles" style={size} key={article.title}>
+              <Link
+                className="title-text"
+                to={`/articles/${article._id}`}
+                key={article._id}
+              >
                 <p>{article.title}</p>
-                <div>{article.body}</div>
               </Link>
             </div>
           );

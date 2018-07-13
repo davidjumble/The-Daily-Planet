@@ -31,7 +31,6 @@ class Comments extends Component {
     const id = this.props.id;
 
     api.postComment(id, commentToPost).then(comment => {
-      console.log(comment, "api result");
       const oldComments = this.state.comments.map(comment => {
         return { ...comment };
       });
@@ -50,17 +49,21 @@ class Comments extends Component {
     const comments = this.state.comments;
 
     return (
-      <div>
-        <p>comments</p>
-        <div>
+      <div className="centering-box">
+        <div className="comments-top">
+          <p>COMMENTS</p>
           <PostComment
             handleClick={this.handlePostCommentClick}
             id={this.props.id}
           />
         </div>
         {comments.map(comment => {
+          //colour randomiser
+          const colours = { 0: "a", 1: "b", 2: "c", 3: "d", 4: "e " };
+          let colourID = colours[Math.floor(Math.random() * 3)];
+          //comments body
           return (
-            <div key={comment._id}>
+            <div className="comments" id={colourID} key={comment._id}>
               <p>{comment.body}</p>
               <p>votes{comment.votes}</p>
               <button onClick={() => this.vote("up", comment._id)}>up</button>

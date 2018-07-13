@@ -7,6 +7,7 @@ class AddComment extends Component {
       created_by: "5b2bcaee3c8d14366003c34e"
     }
   };
+  //created by currently hardcoded so will have to change if I add user functionality or re-seed;
 
   handlePostCommentInput = e => {
     let newCommentBody = e.target.value;

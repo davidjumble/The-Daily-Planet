@@ -1,9 +1,16 @@
 import axios from "axios";
 
-export const fetchArticles = () => {
-  return axios
-    .get("https://davids-northcoder-news.herokuapp.com/api/articles")
-    .then(res => res.data.articles);
+export const fetchArticles = topic => {
+  if (topic) {
+    return axios
+      .get(
+        `https://davids-northcoder-news.herokuapp.com/api/topics/${topic}/articles`
+      )
+      .then(res => res.data.articles);
+  } else
+    return axios
+      .get("https://davids-northcoder-news.herokuapp.com/api/articles")
+      .then(res => res.data.articles);
 };
 
 export const fetchOneArticle = id => {
@@ -42,6 +49,15 @@ export const voteOnArticle = (ballot, id) => {
     .then(res => {
       return res.data.article;
     });
+};
+
+export const postArticle = (topic, articleToPost) => {
+  return axios
+    .post(
+      `https://davids-northcoder-news.herokuapp.com/api/topics/${topic}/articles`,
+      articleToPost
+    )
+    .then(res => res.data.Article);
 };
 
 export const postComment = (id, commentToPost) => {
