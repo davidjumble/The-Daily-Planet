@@ -55,7 +55,7 @@ class PostArticle extends Component {
         />
 
         <button onClick={this.callClickAndResetState} type="button">
-          Share yer futile musings
+          Sharing is Caring
         </button>
       </div>
     );
