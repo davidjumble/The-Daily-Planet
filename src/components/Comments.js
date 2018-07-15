@@ -6,12 +6,12 @@ class Comments extends Component {
     comments: []
   };
 
-  componentDidMount = async () => {
+  componentDidMount = () => {
     let id = this.props.id;
     this.fetchCommentsById(id);
   };
 
-  componentDidUpdate = async prevProps => {
+  componentDidUpdate = prevProps => {
     if (this.props !== prevProps) {
       let id = this.props.id;
       this.fetchCommentsById(id);
@@ -23,7 +23,7 @@ class Comments extends Component {
     let comments;
 
     comments = await api.fetchComments(id);
-    // I need to sort these no doubt about that
+
     this.setState({ comments });
   };
 

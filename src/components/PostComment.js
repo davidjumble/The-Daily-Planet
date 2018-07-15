@@ -18,7 +18,6 @@ class AddComment extends Component {
         created_by: "5b2bcaee3c8d14366003c34e"
       }
     });
-    console.log(this.state.newComment, "updated state");
   };
 
   render() {

@@ -6,12 +6,12 @@ import { Redirect } from "react-router-dom";
 class Article extends Component {
   state = { article: {} };
 
-  componentDidMount = async () => {
+  componentDidMount = () => {
     let id = this.props.match.params.article_id;
     this.fetchArticleById(id);
   };
 
-  componentDidUpdate = async prevProps => {
+  componentDidUpdate = prevProps => {
     console.log(this.props, "single article props");
     if (this.props !== prevProps) {
       let id = this.props.match.params.article_id;

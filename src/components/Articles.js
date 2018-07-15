@@ -8,11 +8,11 @@ class Articles extends React.Component {
     articles: []
   };
 
-  componentDidMount = async () => {
+  componentDidMount = () => {
     this.fetchArticles();
   };
 
-  componentDidUpdate = async prevProps => {
+  componentDidUpdate = prevProps => {
     if (this.props !== prevProps) {
       this.fetchArticles();
     }

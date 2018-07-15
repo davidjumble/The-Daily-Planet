@@ -32,7 +32,12 @@ export const fetchComments = id => {
     .get(
       `https://davids-northcoder-news.herokuapp.com/api/articles/${id}/comments`
     )
-    .then(res => res.data.comments);
+    .then(res => {
+      const comments = res.data.comments.sort((a, b) => {
+        return b.created_at - a.created_at;
+      });
+      return comments;
+    });
 };
 
 export const voteOnComment = (ballot, id) => {
