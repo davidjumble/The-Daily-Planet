@@ -41,7 +41,6 @@ class Comments extends Component {
   };
 
   vote = (ballot, id) => {
-    // propbs should make this a map
     api.voteOnComment(ballot, id).then(() => this.fetchCommentsById(id));
   };
 
@@ -58,20 +57,42 @@ class Comments extends Component {
           />
         </div>
         {comments.map(comment => {
-          //colour randomiser
+          //evaluates opacity for -votes
+          let opacity = {
+            opacity: "0.7"
+          };
+
+          //blue spectrum randomiser
           const colours = { 0: "a", 1: "b", 2: "c", 3: "d", 4: "e " };
           let colourID = colours[Math.floor(Math.random() * 3)];
           //comments body
-          return (
-            <div className="comments" id={colourID} key={comment._id}>
-              <p>{comment.body}</p>
-              <p>votes{comment.votes}</p>
-              <button onClick={() => this.vote("up", comment._id)}>up</button>
-              <button onClick={() => this.vote("down", comment._id)}>
-                down
-              </button>
-            </div>
-          );
+          if (comment.votes < 0) {
+            return (
+              <div
+                className="comments"
+                style={opacity}
+                id={colourID}
+                key={comment._id}
+              >
+                <p>{comment.body}</p>
+                <p>votes{comment.votes}</p>
+                <button onClick={() => this.vote("up", comment._id)}>up</button>
+                <button onClick={() => this.vote("down", comment._id)}>
+                  down
+                </button>
+              </div>
+            );
+          } else
+            return (
+              <div className="comments" id={colourID} key={comment._id}>
+                <p>{comment.body}</p>
+                <p>votes{comment.votes}</p>
+                <button onClick={() => this.vote("up", comment._id)}>up</button>
+                <button onClick={() => this.vote("down", comment._id)}>
+                  down
+                </button>
+              </div>
+            );
         })}
       </div>
     );
