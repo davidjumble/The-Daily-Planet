@@ -1,21 +1,22 @@
 import React, { Component } from "react";
+import currentUserId from "./UserContext.js";
 
 class AddComment extends Component {
   state = {
     newComment: {
       comment: "",
-      created_by: "5b2bcaee3c8d14366003c34e"
+      created_by: ""
     }
   };
   //created by currently hardcoded so will have to change if I add user functionality or re-seed;
 
-  handlePostCommentInput = e => {
+  handlePostCommentInput = (e, id) => {
     let newCommentBody = e.target.value;
     this.setState({
       ...this.state,
       newComment: {
         comment: newCommentBody,
-        created_by: "5b2bcaee3c8d14366003c34e"
+        created_by: id
       }
     });
   };
@@ -23,10 +24,17 @@ class AddComment extends Component {
   render() {
     return (
       <div>
-        <input
-          value={this.state.newComment.comment}
-          onChange={this.handlePostCommentInput}
-        />
+        <currentUserId.Consumer>
+          {id => (
+            <input
+              value={this.state.newComment.comment}
+              onChange={e => {
+                console.log(id);
+                this.handlePostCommentInput(e, id);
+              }}
+            />
+          )}
+        </currentUserId.Consumer>
         <button
           onClick={() => this.props.handleClick(this.state.newComment)}
           type="button"
