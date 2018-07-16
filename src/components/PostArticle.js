@@ -1,15 +1,17 @@
 import React, { Component } from "react";
+import currentUserId from "./UserContext.js";
 
 class PostArticle extends Component {
   state = {
     newArticle: {
       body: "",
       title: "",
-      created_by: "5b2bcaee3c8d14366003c34e"
+      created_by: ""
     }
   };
 
-  handlePostArticleInput = e => {
+  handlePostArticleInput = (e, id) => {
+    console.log(e, "88888spaces888888", id);
     const titleOrBody = e.target.placeholder;
 
     let newText = {
@@ -19,7 +21,7 @@ class PostArticle extends Component {
       newArticle: {
         ...this.state.newArticle,
         ...newText,
-        created_by: "5b2bcaee3c8d14366003c34e"
+        created_by: id
       }
     });
   };
@@ -30,7 +32,7 @@ class PostArticle extends Component {
       newArticle: {
         body: "",
         title: "",
-        created_by: "5b2bcaee3c8d14366003c34e"
+        created_by: ""
       }
     });
   };
@@ -38,19 +40,29 @@ class PostArticle extends Component {
   render() {
     return (
       <div className="comments-top">
-        <input
-          maxLength="30"
-          placeholder="title"
-          value={this.state.newArticle.title}
-          onChange={this.handlePostArticleInput}
-        />
-        <input
-          className="body-box"
-          contentEditable="true"
-          placeholder="body"
-          value={this.state.newArticle.body}
-          onChange={this.handlePostArticleInput}
-        />
+        <currentUserId.Consumer>
+          {id => (
+            <div>
+              <input
+                maxLength="30"
+                placeholder="title"
+                value={this.state.newArticle.title}
+                onChange={e => {
+                  this.handlePostArticleInput(e, id);
+                }}
+              />
+              <input
+                className="body-box"
+                contentEditable="true"
+                placeholder="body"
+                value={this.state.newArticle.body}
+                onChange={e => {
+                  this.handlePostArticleInput(e, id);
+                }}
+              />
+            </div>
+          )}
+        </currentUserId.Consumer>
 
         <button onClick={this.callClickAndResetState} type="button">
           Sharing is Caring
