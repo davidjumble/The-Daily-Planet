@@ -29,7 +29,6 @@ class AddComment extends Component {
             <input
               value={this.state.newComment.comment}
               onChange={e => {
-                console.log(id);
                 this.handlePostCommentInput(e, id);
               }}
             />

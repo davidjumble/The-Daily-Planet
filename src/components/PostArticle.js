@@ -11,7 +11,6 @@ class PostArticle extends Component {
   };
 
   handlePostArticleInput = (e, id) => {
-    console.log(e, "88888spaces888888", id);
     const titleOrBody = e.target.placeholder;
 
     let newText = {
