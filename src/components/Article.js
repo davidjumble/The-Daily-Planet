@@ -85,9 +85,10 @@ class Article extends Component {
           <div className="article" />
           <p className="votes">votes{article.votes}</p>
 
-          {article.confirming && (
+          {/* deffo gonna implement nicer vote assurance */}
+          {/* {article.confirming && (
             <p className="votes"> Thank you for voting democracy works!</p>
-          )}
+          )} */}
           {article.errMsg && <p>{article.errMsg}</p>}
           <div className="votes">
             <button onClick={() => this.vote("up", article._id)}>up</button>
