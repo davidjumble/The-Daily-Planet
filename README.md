@@ -7,7 +7,8 @@ Ensure you have at least NodeJS v10.1.0 installed on your machine. JavaScript co
 Installing
 Fork and clone this repository to your machine
 Using terminal cd to the cloned directory and run this command:
-npm install
+
+`npm install`
 Running the app
 To run the tests run the following command in terminal:
 
