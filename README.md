@@ -17,7 +17,7 @@ npm install
 
 ### Running the app
 
-To run the tests run the following command in terminal:
+To run use the following command in terminal:
 
 ```js
 npm start
