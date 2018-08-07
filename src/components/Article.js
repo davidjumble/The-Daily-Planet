@@ -9,6 +9,7 @@ class Article extends Component {
   componentDidMount = () => {
     let id = this.props.match.params.article_id;
     this.fetchArticleById(id);
+    console.log("testing");
   };
 
   componentDidUpdate = prevProps => {
