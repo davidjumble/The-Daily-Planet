@@ -36,6 +36,8 @@ class App extends Component {
             <Route exact path="/articles/:article_id" component={Article} />
             <Route exact path="/404" component={Culdesac} />
           </div>
+
+          <div className="errorWrapper">We are very sorry but articles are not loading at the moment</div>
         </currentUserId.Provider>
       </Router>
     );
